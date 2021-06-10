@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include <time.h>
+int count=0;
+void towers(int n,char s, char t, char d)
+{
+    count++;
+    if(n==1){
+        printf("Move disk 1 from %c to %c\n",s,d);
+        return;
+    }
+    towers(n-1,s,d,t);
+    printf("Move disk %d from %c to %c\n",n,s,d);
+    towers(n-1,t,s,d);
+}
+int main()
+{
+    int n;
+    float start, end; 
+    printf("Enter no. of disks : ");
+    scanf("%d",&n);
+    start = clock();
+    towers(n,'S','T','D');
+    end = clock();
+    float ti = ((double)(end - start)/CLOCKS_PER_SEC);
+    printf("\nTime taken: %f", ti); 
+    printf("\n count is : %d",count);
+    return 0;
+ }
